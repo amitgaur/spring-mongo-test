@@ -1,9 +1,12 @@
 package com.amitgaur.sample.app;
 import java.util.UUID;
 
+import com.amitgaur.sample.app.config.MongoConfig;
 import com.amitgaur.sample.app.model.Role;
 import com.amitgaur.sample.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 /**
@@ -11,10 +14,16 @@ import org.springframework.data.mongodb.core.MongoTemplate;
  */
 public class InitMongoService {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
 
-    public void init() {
+    private static MongoTemplate mongoTemplate;
+
+    public static void main(String... args) throws  Exception{
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
+
+
+        MongoConfig config = ctx.getBean(MongoConfig.class);
+
+        mongoTemplate= config.mongoTemplate();
         // Drop existing collections
         mongoTemplate.dropCollection("role");
         mongoTemplate.dropCollection("user");
