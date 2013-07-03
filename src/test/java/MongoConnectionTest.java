@@ -1,4 +1,4 @@
-import com.amitgaur.sample.app.config.ConnectionConfig;
+import com.amitgaur.sample.app.config.MongoConfig;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -11,15 +11,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * Time: 1:03 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ConnectionConfigTest {
+public class MongoConnectionTest {
 
    @Test
    public void testConfigContext(){
 
-    ApplicationContext ctx = new AnnotationConfigApplicationContext(ConnectionConfig.class);
+    ApplicationContext ctx = new AnnotationConfigApplicationContext(MongoConfig.class);
 
 
-    ConnectionConfig config = ctx.getBean(ConnectionConfig.class);
+    MongoConfig config = ctx.getBean(MongoConfig.class);
 
        Assert.assertNotNull(config);
 

@@ -1,10 +1,15 @@
 package com.amitgaur.sample.app.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.sun.xml.internal.ws.api.PropertySet;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+
+import javax.annotation.Resource;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,12 +20,19 @@ import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
  */
 @Configuration
 
+@PropertySource("classpath:/mongo.properties")
 public class MongoConfig {
 
+    @Resource
+    private Environment environment;
     @Bean
-    public MongoTemplate getMongoTemplate() {
+    public MongoTemplate mongoTemplate() throws Exception{
 
-        return new MongoTemplate(null);
+        String dbHost=environment.getProperty("dbHost");
+        String dbPort = environment.getProperty("dbPort");
+        String dbName  = environment.getProperty("dbName");
+        return new MongoTemplate(new SimpleMongoDbFactory(new MongoClient(dbHost,Integer.parseInt(dbPort)),dbName));
     }
+
 
 }
