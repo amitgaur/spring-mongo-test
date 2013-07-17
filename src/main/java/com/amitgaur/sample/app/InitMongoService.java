@@ -4,6 +4,7 @@ import java.util.UUID;
 import com.amitgaur.sample.app.config.MongoConfig;
 import com.amitgaur.sample.app.model.Role;
 import com.amitgaur.sample.app.model.User;
+import com.amitgaur.sample.app.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -41,14 +42,14 @@ public class InitMongoService {
         john.setId(UUID.randomUUID().toString());
         john.setFirstName("John");
         john.setLastName("Smith");
-        john.setPassword("21232f297a57a5a743894a0e4a801fc3");
+        john.setPassword(PasswordUtil.generatePassword("imeasy"));
         john.setRole(adminRole);
 
         User jane = new User();
         jane.setId(UUID.randomUUID().toString());
         jane.setFirstName("Jane");
         jane.setLastName("Adams");
-        jane.setPassword("ee11cbb19052e40b07aac0ca060c23ee");
+        jane.setPassword(PasswordUtil.generatePassword("imeasier"));
         jane.setRole(userRole);
 
 

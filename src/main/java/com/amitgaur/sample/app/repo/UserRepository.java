@@ -11,4 +11,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * To change this template use File | Settings | File Templates.
  */
 public interface UserRepository extends MongoRepository<User,String> {
+
+    public User findByUserName(String userName);
 }

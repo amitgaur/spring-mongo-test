@@ -25,4 +25,11 @@ public class Role {
     public void setRole(int role) {
         this.role = role;
     }
+
+    public String getId() {
+        return id;
+    }
+    public Integer getRole() {
+        return role;
+    }
 }
